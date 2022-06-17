@@ -1,7 +1,13 @@
 <template>
-  <div style="background: linear-gradient(90deg, #e234a7, #ff8a00); padding-bottom: 10%;">
+  <div
+    style="
+      background: linear-gradient(90deg, #e234a7, #ff8a00);
+      padding-bottom: 10%;
+    "
+  >
     <div class="center">
-      <div class="forms slider-thumb">
+      <div class="slider-thumb"></div>
+      <div class="forms">
         <input type="text" name="first" placeholder="Write your name" />
         <input type="text" name="last" placeholder="Write your last name" />
         <input type="email" name="email" placeholder="Write your email" />
@@ -14,26 +20,19 @@
       </div>
     </div>
     <div class="flx">
-    <div class="line"></div>
+      <div class="line"></div>
     </div>
-    <div class="center">
-    <div class="forms2">
-      <input
-        type="email"
-        name="auth_email"
-        value="a@example.com"
-        placeholder="Write your email"
-      />
-      <input
-        type="password"
-        name="auth_password"
-        value="123"
-        placeholder="Write your password"
-      />
-      <button @click="getAuth" class="card-text-button">Sign in</button>
+    <div class="center2">
+      <div class="forms2">
+        <input type="email" name="auth_email" placeholder="Write your email" />
+        <input
+          type="password"
+          name="auth_password"
+          placeholder="Write your password"
+        />
+        <button @click="getAuth" class="card-text-button">Sign in</button>
+      </div>
     </div>
-    </div>
-    
 
     <!-- <p>{{ me_email }}</p>
     <p>{{ me_id }}</p>
@@ -50,6 +49,8 @@ export default {
   setup() {
     const me_email = ref("");
     const me_id = ref("");
+    const status = [200, 201, 202, 203, 204]
+
 
     async function user_me() {
       const { data } = await axios.get("http://38.242.229.113:8055/users/me", {
@@ -73,7 +74,12 @@ export default {
         data
       );
       localStorage.setItem("token", result.data.data.access_token);
+      if (status.includes(result.status)){
+        window.location.href = "/products";
+      }
     }
+    
+
     async function createUser() {
       const first = document.querySelector("input[name=first]").value;
       const last = document.querySelector("input[name=last]").value;
@@ -103,13 +109,36 @@ export default {
 
 <style scoped>
 .forms {
-  display: flex;
-  flex-direction: column;
   width: 363px;
   height: 496px;
-
+  display: flex;
   text-align: center;
   align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  grid-area: 1/2;
+}
+.slider-thumb::before {
+  content: "";
+  width: 35%;
+  height: 92%;
+  background: #17141d;
+  border-radius: 62% 47% 82% 35% / 45% 45% 80% 66%;
+  will-change: border-radius, transform, opacity;
+  animation: sliderShape 5s linear infinite;
+  display: block;
+  z-index: 0;
+  -webkit-animation: sliderShape 5s linear infinite;
+}
+.slider-thumb {
+  grid-area: 1/2;
+}
+.center {
+  display: grid;
+  padding-top: 3%;
+}
+.center2 {
+  display: flex;
   justify-content: center;
 }
 .forms2 {
@@ -122,20 +151,17 @@ export default {
   align-items: center;
   justify-content: center;
 }
-.center {
-  display: flex;
-  justify-content: center;
-}
+
 input {
-  width: 286px;
+  width: 78%;
+  line-height: 35px;
   text-align: center;
-  padding-top: 15px;
   margin: 22px 0px 0px 0px;
   z-index: 10;
-      border-radius: 5px;
+  border-radius: 5px;
 }
 .card-text-button {
-  padding: 10px 120px;
+  padding: 3% 33%;
   border: #ffffff solid 1px;
   background-color: black;
   border-radius: 4%;
@@ -144,7 +170,7 @@ input {
   opacity: 0.8;
   cursor: pointer;
   margin-top: 19px;
-      border-radius: 5px;
+  border-radius: 5px;
 }
 .card-text-button:hover {
   background-color: white;
@@ -152,31 +178,18 @@ input {
   border: 1px solid black;
   z-index: 0;
 }
-.slider-thumb::before {
-  position: absolute;
-  content: "";
-  left: 38%;
-  top: 12%;
-  width: 450px;
-  height: 450px;
-  background: #17141d;
-  border-radius: 62% 47% 82% 35% / 45% 45% 80% 66%;
-  will-change: border-radius, transform, opacity;
-  animation: sliderShape 5s linear infinite;
-  display: block;
-  z-index: 0;
-  -webkit-animation: sliderShape 5s linear infinite;
-}
-.line{
+
+.line {
   width: 400px;
   height: 2px;
   background-color: black;
-      margin-top: 30px;
+  margin-top: 30px;
 }
-.flx{
+.flx {
   display: flex;
-      justify-content: center;
+  justify-content: center;
 }
+
 @keyframes sliderShape {
   0%,
   100% {
@@ -193,6 +206,226 @@ input {
   67% {
     border-radius: 100% 60% 60% 100% / 100% 100% 60% 60%;
     transform: translate3d(0, -3px, 0) rotateZ(0.01deg);
+  }
+}
+
+@media (max-width: 1440px) {
+  .slider-thumb::before {
+    content: "";
+    width: 43%;
+    height: 108%;
+    background: #17141d;
+    border-radius: 62% 47% 82% 35% / 45% 45% 80% 66%;
+    will-change: border-radius, transform, opacity;
+    animation: sliderShape-26084dc2 5s linear infinite;
+    display: block;
+    z-index: 0;
+    -webkit-animation: sliderShape-26084dc2 5s linear infinite;
+  }
+  .center {
+    width: 100%;
+  }
+  .center2 {
+    width: 100%;
+  }
+
+  .forms {
+    height: 321px;
+  }
+  .line {
+    margin: 3% 0%;
+  }
+}
+@media (max-width: 1280px) {
+  .slider-thumb::before {
+    content: "";
+    width: 48%;
+    height: 107%;
+    background: #17141d;
+    border-radius: 62% 47% 82% 35% / 45% 45% 80% 66%;
+    will-change: border-radius, transform, opacity;
+    animation: sliderShape-26084dc2 5s linear infinite;
+    display: block;
+    z-index: 0;
+    -webkit-animation: sliderShape-26084dc2 5s linear infinite;
+  }
+  .center {
+    width: 100%;
+  }
+  .center2 {
+    width: 100%;
+  }
+
+  .forms {
+    height: 321px;
+  }
+  .line {
+    margin: 3% 0%;
+  }
+}
+@media (max-width: 1024px) {
+  .slider-thumb::before {
+    content: "";
+    width: 56%;
+    height: 100%;
+    background: #17141d;
+    border-radius: 62% 47% 82% 35% / 45% 45% 80% 66%;
+    will-change: border-radius, transform, opacity;
+    animation: sliderShape-26084dc2 5s linear infinite;
+    display: block;
+    z-index: 0;
+    -webkit-animation: sliderShape-26084dc2 5s linear infinite;
+  }
+  .center {
+    width: 100%;
+  }
+  .center2 {
+    width: 100%;
+  }
+
+  .forms {
+    height: 321px;
+  }
+  .line {
+    margin: 3% 0%;
+  }
+}
+@media (max-width: 912px) {
+  .slider-thumb::before {
+    content: "";
+    width: 60%;
+    height: 100%;
+    background: #17141d;
+    border-radius: 62% 47% 82% 35% / 45% 45% 80% 66%;
+    will-change: border-radius, transform, opacity;
+    animation: sliderShape-26084dc2 5s linear infinite;
+    display: block;
+    z-index: 0;
+    -webkit-animation: sliderShape-26084dc2 5s linear infinite;
+  }
+  .center {
+    width: 100%;
+  }
+  .center2 {
+    width: 100%;
+  }
+
+  .forms {
+    height: 321px;
+  }
+  .line {
+    margin: 3% 0%;
+  }
+}
+@media (max-width: 768px) {
+  .slider-thumb::before {
+    content: "";
+    width: 66%;
+    height: 98%;
+    background: #17141d;
+    border-radius: 62% 47% 82% 35% / 45% 45% 80% 66%;
+    will-change: border-radius, transform, opacity;
+    animation: sliderShape-26084dc2 5s linear infinite;
+    display: block;
+    z-index: 0;
+    -webkit-animation: sliderShape-26084dc2 5s linear infinite;
+  }
+  .center {
+    width: 100%;
+  }
+  .center2 {
+    width: 100%;
+  }
+
+  .forms {
+    height: 321px;
+  }
+  .line {
+    margin: 3% 0%;
+  }
+}
+@media (max-width: 541px) {
+  .slider-thumb {
+    display: none;
+  }
+  .center {
+    width: 100%;
+  }
+  .center2 {
+    width: 100%;
+  }
+
+  .forms {
+    height: 321px;
+  }
+  .line {
+    margin: 0px;
+  }
+}
+@media (max-width: 414px) {
+  .slider-thumb {
+    display: none;
+  }
+  .center {
+    width: 100%;
+  }
+  .center2 {
+    width: 100%;
+  }
+  .forms2 {
+    width: 100%;
+  }
+  .forms {
+    width: 100%;
+    display: block;
+    height: 355px;
+  }
+  .line {
+    margin: 0px;
+  }
+}
+@media (max-width: 320px) {
+  .slider-thumb {
+    display: none;
+  }
+  .center {
+    width: 100%;
+  }
+  .center2 {
+    width: 100%;
+  }
+  .forms2 {
+    width: 100%;
+  }
+  .forms {
+    width: 100%;
+    display: block;
+    height: 321px;
+  }
+  .line {
+    margin: 0px;
+  }
+}
+@media (max-width: 280px) {
+  .slider-thumb {
+    display: none;
+  }
+  .center {
+    width: 100%;
+  }
+  .center2 {
+    width: 100%;
+  }
+  .forms2 {
+    width: 100%;
+  }
+  .forms {
+    width: 100%;
+    display: block;
+    height: 321px;
+  }
+  .line {
+    margin: 0px;
   }
 }
 </style>

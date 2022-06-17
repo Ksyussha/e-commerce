@@ -14,11 +14,7 @@
               <p class="description">{{ data.products_by_id.description }}</p>
               <div class="price-and-cart">
                 <p class="price">{{ data.products_by_id.price }} $</p>
-<<<<<<< HEAD
                 <a href="#"><button class="card-text-button" @click="addToCart(data.products_by_id.id)">add to cart</button></a>
-=======
-                <a href="#"><button class="card-text-button">add to cart</button></a>
->>>>>>> 07218ffa14bb73d598ca810bb9e102fad6e6beb0
               </div>
             </div>
           </div>
@@ -172,19 +168,17 @@ export default {
   cursor: pointer;
 }
 
+.card-text-button:hover {
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+}
 .price-and-cart {
   display: flex;
   align-items: center;
   margin: 20px 0px;
   margin-left: 403px;
 }
-
-.card-text-button:hover {
-  background-color: white;
-  color: black;
-  border: 1px solid black;
-}
-
 .description {
   color: black;
   line-height: 1.6;

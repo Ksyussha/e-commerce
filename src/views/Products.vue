@@ -6,7 +6,6 @@
           <h1>Products</h1>
         </div>
       </div>
-<<<<<<< HEAD
     </div>
     <!-- <div v-for="c in data.categories" :key="c.id" class="categories"> -->
     <!-- <button @click="move(c.id)">{{ c.title }}</button> -->
@@ -56,35 +55,6 @@
                 {{ p.price }}$
               </p>
             </div>
-=======
-    </div>
-    <div class="cont" style="width: 1465px; margin:0 auto; background-color: #f6f6f6; padding-bottom: 10%;">
-      <div class="flx">
-        <input type="text" v-model="search" placeholder="search..." />
-      </div>
-      <div v-if="fetching">Loading...</div>
-      <div v-else-if="error">Oh no... {{ error }}</div>
-      <div v-else>
-        <div v-if="data">
-          <div class="flex">
-            
-            <div v-for="p in data.products" :key="p.id" @click="move(p.id)" class="product_card">
-            <div class="fl">
-              <div>
-            <a href=""> ♡ </a>
-            </div>
-            </div>
-              <img :src="
-                'http://38.242.229.113:8055/assets/' +
-                p.image.id +
-                '?width=210&height=218&fit=cover'
-              " alt="" />
-              <p>{{ p.title }}</p>
-              <div class="forPrice">
-                <!-- <p style="color:#aac6de; font-weight: bold;">PRICE:</p> -->
-                <p style="c    color: rgb(0 0 0);font-weight: bold;font-size: 21.5px;">{{ p.price }}$</p>
-              </div>
->>>>>>> 07218ffa14bb73d598ca810bb9e102fad6e6beb0
             </div>
           </div>
         </div>
@@ -98,25 +68,16 @@
 
 <script>
 import { useQuery, gql, useMutation } from "@urql/vue";
-<<<<<<< HEAD
 import { ref } from "vue";
 import axios from "axios";
 import { useRouter, useRoute } from "vue-router";
 import { onMounted } from "@vue/runtime-core";
-=======
-import { ref } from 'vue'
-
-import { useRouter, useRoute } from "vue-router";
-import { onMounted } from '@vue/runtime-core';
-
->>>>>>> 07218ffa14bb73d598ca810bb9e102fad6e6beb0
 
 export default {
   setup() {
     const search = ref(null);
     const router = useRouter();
     const route = useRoute();
-<<<<<<< HEAD
     const limit = ref(8)
     const add = useMutation(
       gql`
@@ -134,31 +95,6 @@ export default {
       query: gql`
         query($search: String, $limit: Int! = 8) {
           products(search: $search, limit: $limit) {
-=======
-
-
-    const add = useMutation(`  
-       
-    mutation ($ProductId: Int!, $UserId: String!) {
-  create_junction_directus_users_products_item(
-    data: { products_id: $ProductId, directus_users_id: $UserId }
-  ) {
-    id
-  }
-}`
-
-
-    );
-
-    
-
-
-
-    const result = useQuery({
-      query: gql` 
-        query ($search: String) {
-          products(search: $search) {
->>>>>>> 07218ffa14bb73d598ca810bb9e102fad6e6beb0
             id
             title
             price
@@ -166,14 +102,8 @@ export default {
               id
             }
           }
-<<<<<<< HEAD
         }
       `, variables: { search, limit }
-=======
-        }`
-      ,
-      variables: { search },
->>>>>>> 07218ffa14bb73d598ca810bb9e102fad6e6beb0
     });
 
     function searchProducts() {
@@ -186,7 +116,6 @@ export default {
     }
 
     async function addFav(id) {
-<<<<<<< HEAD
       const { data } = await axios.get("http://38.242.229.113:8055/users/me", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -196,12 +125,6 @@ export default {
       const a = parseInt(i);
       const u = data.data.id;
       const variables = { ProductId: a, UserId: u };
-=======
-      const i = id
-      const a = parseInt(i)
-      const u = "518c6ae4-9919-4f5c-a494-81a4c8e562a3"
-      const variables = { ProductId: a, UserId: u }
->>>>>>> 07218ffa14bb73d598ca810bb9e102fad6e6beb0
       add.executeMutation(variables).then((result) => {
         if (result.error) {
           console.error("Oh no!", result.error);
@@ -209,10 +132,6 @@ export default {
       });
     }
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 07218ffa14bb73d598ca810bb9e102fad6e6beb0
     return {
       search,
       fetching: result.fetching,
@@ -220,40 +139,21 @@ export default {
       error: result.error,
       searchProducts,
       move,
-<<<<<<< HEAD
       addFav,
       limit
-=======
-      addFav
->>>>>>> 07218ffa14bb73d598ca810bb9e102fad6e6beb0
     };
   },
 };
 </script>
 
 <style scoped>
-<<<<<<< HEAD
 @import url("https://fonts.googleapis.com/css2?family=Varela+Round&display=swap");
 
-=======
-@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
-
-/* .backgroundin{ 
-  background-color: #ffffff;
-  padding: 10px 0px 0px 0px; 
-  height: 600px;
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-end;
-
-} */
->>>>>>> 07218ffa14bb73d598ca810bb9e102fad6e6beb0
 .backgroundin {
   background-image: url(https://www.apple.com/v/iphone/home/bh/images/overview/retail/why_apple__ezn1ktvka6oi_large.jpg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-<<<<<<< HEAD
   border: 10px solid;
   border-image-slice: 1;
   border-width: 3px;
@@ -261,11 +161,6 @@ export default {
   border-right-style: none;
   border-left-style: none;
   border-top-style: none;
-=======
-  border: 1px solid black;
-    border-right-style: none;
-    border-left-style: none;
->>>>>>> 07218ffa14bb73d598ca810bb9e102fad6e6beb0
 }
 
 .h1 {
@@ -274,10 +169,6 @@ export default {
   justify-content: center;
   align-items: center;
   margin-top: 0px;
-<<<<<<< HEAD
-=======
-
->>>>>>> 07218ffa14bb73d598ca810bb9e102fad6e6beb0
 }
 
 .h1 h1 {
@@ -306,7 +197,6 @@ h1 {
   transition: all 0.2s ease-in-out;
   background-color: #f6f6f6;
 }
-<<<<<<< HEAD
 
 .product_card:hover {
   transform: scale(1.1);
@@ -328,8 +218,6 @@ h1 {
 .fl {
   margin-left: 176px;
 }
-=======
->>>>>>> 07218ffa14bb73d598ca810bb9e102fad6e6beb0
 
 .product_card:hover {
   transform: scale(1.1);
@@ -373,7 +261,6 @@ input {
   display: flex;
   align-items: baseline;
 }
-<<<<<<< HEAD
 
 .limit {
   display: flex;
@@ -384,9 +271,8 @@ input {
   margin-top: 113px;
   cursor: pointer;
   font-size: 24px;
-  color: #121111;
+  background: -webkit-linear-gradient(#e234a7, #ff8a00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 </style>
-=======
-</style>
->>>>>>> 07218ffa14bb73d598ca810bb9e102fad6e6beb0
