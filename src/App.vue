@@ -22,6 +22,8 @@
         <RouterLink to="/products">Products</RouterLink>
         <p style="color: #2c5592">|</p>
         <RouterLink to="/login">Login</RouterLink>
+        <p style="color: #2c5592">|</p>
+        <RouterLink to="/cart">Cart</RouterLink>
       </div>
     </div>
     <RouterView />

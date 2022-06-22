@@ -5,6 +5,7 @@
   >
     <div class="hi">
       <h1>WELCOME!</h1>
+      <h2>The best way to buy the products you love.</h2>
     </div>
   </div>
   <div class="img">
@@ -13,21 +14,30 @@
 </template>
 
 <script>
-export default {};
+export default {
+  setup() {
+    
+  }
+};
 </script>
 
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Varela+Round&display=swap");
 .hi {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+    align-items: center;
 }
 .hi h1 {
-  color: black;
-  font-size: 56.5px;
-  text-transform: uppercase;
-  margin: 0px;
-  font-weight: initial;
-  margin-top: 64px;
+      color: black;
+    font-size: 53.5px;
+    text-transform: uppercase;
+    margin: 0px;
+    font-weight: lighter;
+    margin-top: 64px;
+}
+.hi h2{
+  color: #ff8a00;
+    font-weight: lighter;
 }
 </style>
