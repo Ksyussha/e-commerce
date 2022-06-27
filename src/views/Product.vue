@@ -15,6 +15,7 @@
               <div class="price-and-cart">
                 <p class="price">{{ data.products_by_id.price }} $</p>
                 <a href="#"><button class="card-text-button" @click="addToCart(data.products_by_id.id)">add to cart</button></a>
+                <a href="/cart"><button class="card-text-button" @click="addToCart(data.products_by_id.id)">buy now</button></a>
               </div>
             </div>
           </div>
@@ -27,7 +28,7 @@
 <script>
 import axios from "axios";
 import { useQuery, useMutation } from "@urql/vue";
-import { useRouter, useRoute } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'  
 
 export default {
   setup() {
@@ -177,7 +178,7 @@ export default {
   display: flex;
   align-items: center;
   margin: 20px 0px;
-  margin-left: 403px;
+      margin-left: 389px;
 }
 .description {
   color: black;
