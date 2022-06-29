@@ -13,9 +13,10 @@
               <h2 class="title">{{ data.products_by_id.title }}</h2>
               <p class="description">{{ data.products_by_id.description }}</p>
               <div class="price-and-cart">
+              
                 <p class="price">{{ data.products_by_id.price }} $</p>
-                <a href="#"><button class="card-text-button" @click="addToCart(data.products_by_id.id)">add to cart</button></a>
-                <a href="/cart"><button class="card-text-button" @click="addToCart(data.products_by_id.id)">buy now</button></a>
+                <a href="#"><button class="card-text-button" @click="addToCart(data.products_by_id)">add to cart</button></a>
+                <a href="/cart"><button class="card-text-button" @click="addToCart(data.products_by_id)">buy now</button></a>
               </div>
             </div>
           </div>
@@ -29,6 +30,7 @@
 import axios from "axios";
 import { useQuery, useMutation } from "@urql/vue";
 import { useRouter, useRoute } from 'vue-router'  
+import { addToCart } from "../../utils/cart";
 
 export default {
   setup() {
@@ -52,33 +54,6 @@ export default {
       `, variables: { id }
     });
 
-    const addToCartP = useMutation(
-       `
-    mutation ($ProductId: Int!, $UserId: String!) {
-  create_junction_directus_users_products_1_item(
-    data: { products_id: $ProductId, directus_users_id: $UserId }
-  ) {
-    id
-  }
-}
-      ` 
-    ); 
-    async function addToCart(id) {
-      const { data } = await axios.get("http://38.242.229.113:8055/users/me", {
-        headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
-        }
-      });
-      const i = id
-      const a = parseInt(i)
-      const u = data.data.id
-      const variables = { ProductId: a, UserId: u }
-      addToCartP.executeMutation(variables).then((result) => {
-        if (result.error) {
-          console.error("Oh no!", result.error);
-        }
-      });
-    }
 
     return {
       fetching: result.fetching,
