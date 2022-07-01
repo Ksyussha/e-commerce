@@ -14,7 +14,7 @@
       </div>
       <div v-for="p in cart" :key="p?.id">
         <div class="cartscard">
-          <div class="forx" @click="deleteFromCart(p)">
+          <div class="forx" @click="deleteFromCartLocal(index)">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               class="h-6 w-6"
@@ -54,19 +54,20 @@
 </template>
 
 <script>
-import { computed, onMounted } from "vue";
+import { computed, onMounted, ref } from "vue";
 import { deleteFromCart } from "../../utils/cart";
-import { useCartStore } from '../stores/refreshCart'
 export default {
   setup() {
-    
-    const store = useCartStore()
-const cart = computed (() => {
-      return store.cart
-    })
+    let cart = ref(JSON.parse(sessionStorage.getItem('cart')))
+    const deleteFromCartLocal = (index) => {
+      cart.value.splice(index,1)
+      deleteFromCart(index)
+    }
+    console.log(cart);
     return {
       cart,
-      deleteFromCart
+      deleteFromCart,
+      deleteFromCartLocal
     };
   },
 };
