@@ -10,9 +10,9 @@
       "
     >
       <div class="flex1">
-        <h1>GOODS</h1>
+        <!-- <h1>GOODS</h1> -->
       </div>
-      <div v-for="p in cart" :key="p?.id">
+      <div v-for="(p, index) in cart" :key="p?.id">
         <div class="cartscard">
           <div class="forx" @click="deleteFromCartLocal(index)">
             <svg
@@ -49,31 +49,53 @@
           </div>
         </div>
       </div>
+      <div class="flexForClear">
+      <a @click="clearCartLocal" class="clearCart">clear cart</a>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import { computed, onMounted, ref } from "vue";
-import { deleteFromCart } from "../../utils/cart";
+import { deleteFromCart, clearCart } from "../../utils/cart";
 export default {
   setup() {
     let cart = ref(JSON.parse(sessionStorage.getItem('cart')))
+    console.log(cart);
     const deleteFromCartLocal = (index) => {
       cart.value.splice(index,1)
       deleteFromCart(index)
+    }
+    const clearCartLocal = () => {
+      cart.value.splice(0, cart._rawValue.length)
+      clearCart()
     }
     console.log(cart);
     return {
       cart,
       deleteFromCart,
-      deleteFromCartLocal
+      deleteFromCartLocal,
+      clearCart,
+      clearCartLocal,
     };
   },
 };
 </script>
 
 <style scoped>
+.flexForClear{
+  display: flex;
+  justify-content: center;
+}
+.clearCart{
+  margin-top: 113px;
+  cursor: pointer;
+  font-size: 24px;
+  background: -webkit-linear-gradient(#e234a7, #ff8a00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 .flex {
   display: flex;
   align-items: center;

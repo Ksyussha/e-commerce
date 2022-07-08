@@ -27,3 +27,8 @@ function isJson(str) {
     sessionStorage.setItem('cart', JSON.stringify(cart))
   }
   
+  export function clearCart() {
+    let cart = JSON.parse(sessionStorage.getItem('cart'))
+    cart.splice(0, cart.length)
+    sessionStorage.setItem('cart', JSON.stringify(cart))
+  }
