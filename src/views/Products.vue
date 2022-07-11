@@ -33,8 +33,10 @@
             class="product_card"
           >
             <div class="fl">
-              <div>
-                <a @click="addFav(p.id)"> ♡ </a>
+              <div class="fav">
+                <a @click="addFav(p.id)"> <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+</svg> </a>
               </div>
             </div>
             <div class="formove" @click="move(p.id)">
@@ -164,6 +166,14 @@ export default {
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Varela+Round&display=swap");
 
+.fav:onclick{
+  fill: #e234a7;
+stroke: #e234a7;
+}
+.fav{
+  width: 25px;
+}
+
 .backgroundin {
   background-image: url(https://www.apple.com/v/iphone/home/bh/images/overview/retail/why_apple__ezn1ktvka6oi_large.jpg);
   background-position: center;
@@ -218,16 +228,14 @@ h1 {
   cursor: pointer;
 }
 
-.product_card a {
-  text-decoration: none;
+/* .product_card svg {
+  
   color: #e234a7;
-  font-size: 30px;
-}
+  
+} */
 
-.product_card a:hover {
-  text-decoration: none;
+.product_card svg:hover {
   color: #e234a7;
-  font-weight: bold;
 }
 
 .fl {

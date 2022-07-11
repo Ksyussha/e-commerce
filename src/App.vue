@@ -17,13 +17,15 @@
   -webkit-text-fill-color: transparent;">Apple</h1>
       </div>
       <div class="menuu">
-        <RouterLink to="/">Home</RouterLink>
+        <RouterLink to="/" class="hover">Home</RouterLink>
         <p style="color: #2c5592">|</p>
-        <RouterLink to="/products">Products</RouterLink>
+        <RouterLink to="/products" class="hover">Products</RouterLink>
         <p style="color: #2c5592">|</p>
-        <RouterLink to="/login">Login</RouterLink>
+        <RouterLink to="/login" class="hover">Login</RouterLink>
         <p style="color: #2c5592">|</p>
-        <RouterLink to="/cart">Cart</RouterLink>
+        <RouterLink to="/cart" class="hover">Cart</RouterLink>
+        <p style="color: #2c5592">|</p>
+        <RouterLink to="/favourite" class="hover">Favourite</RouterLink>
       </div>
     </div>
     <RouterView />
@@ -51,6 +53,9 @@ export default {
 
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Varela+Round&display=swap");
+.hover:hover{
+  color:#e234a7;
+}
 .menu {
   background-color: #f6f6f6;
   height: 68px;
