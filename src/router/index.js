@@ -35,8 +35,8 @@ const router = createRouter({
       component: Cart
     },
     {
-      path: '/favourite',
-      name: 'favourite',
+      path: '/favourites',
+      name: 'favourites',
       component: Favourite
     },
   ]

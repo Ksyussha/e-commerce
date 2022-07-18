@@ -103,7 +103,7 @@ export default {
             id
           }
         }
-      `
+      `, 
     );
 
     const result = useQuery({
@@ -234,10 +234,14 @@ h1 {
   
 } */
 
-.product_card svg:hover {
-  color: #e234a7;
+.product_card .fav svg:hover {
+  fill: #e234a7;
+  stroke: #e234a7;
 }
 
+.product_card  svg:hover {
+  color: #e234a7;
+}
 .fl {
   margin-left: 176px;
 }
@@ -263,6 +267,7 @@ h1 {
   display: flex;
   flex-wrap: wrap;
   align-items: stretch;
+  justify-content: center;
 }
 
 input {

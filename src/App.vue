@@ -25,7 +25,7 @@
         <p style="color: #2c5592">|</p>
         <RouterLink to="/cart" class="hover">Cart</RouterLink>
         <p style="color: #2c5592">|</p>
-        <RouterLink to="/favourite" class="hover">Favourite</RouterLink>
+        <RouterLink to="/favourites" class="hover">Favourite</RouterLink>
       </div>
     </div>
     <RouterView />
