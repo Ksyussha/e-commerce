@@ -53,11 +53,12 @@
 
 <script>
 import { useQuery, gql } from "@urql/vue";
+import { useRouter, useRoute } from "vue-router";
 import { addToCart } from "../../utils/cart";
 
 export default {
   setup() {
-    
+    const router = useRouter();
     const fav = useQuery({
       query: gql`
         query {
@@ -90,7 +91,7 @@ export default {
     return {
       data: fav.data,
       addToCart,
-      move
+      move,
     };
   },
 };

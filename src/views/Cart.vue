@@ -72,6 +72,7 @@ export default {
       clearCart()
     }
     console.log(cart);
+    
     return {
       cart,
       deleteFromCart,
