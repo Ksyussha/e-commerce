@@ -30,7 +30,7 @@
               />
             </svg>
           </div>
-          <div class="flex">
+          <div class="flex" @click="move(p.id)">
             <div class="img">
               <img
                 :src="
@@ -44,9 +44,11 @@
             <div class="txt">
               <p>{{ p?.title }}</p>
               <p>{{ p?.description }}</p>
-              <p>{{ p?.price }} $</p>
+              <p>{{ p?.price * qty }} $</p>
             </div>
+            
           </div>
+          <div><input type="number" name="qty" id="qty" v-model="qty"></div>
         </div>
       </div>
       <div class="flexForClear">
@@ -59,8 +61,11 @@
 <script>
 import { computed, onMounted, ref } from "vue";
 import { deleteFromCart, clearCart } from "../../utils/cart";
+import { useRouter, useRoute } from "vue-router";
 export default {
   setup() {
+    const qty = ref(1)
+    const router = useRouter();
     let cart = ref(JSON.parse(sessionStorage.getItem('cart')))
     console.log(cart);
     const deleteFromCartLocal = (index) => {
@@ -72,13 +77,17 @@ export default {
       clearCart()
     }
     console.log(cart);
-    
+    function move(id) {
+      router.push("/products/" + id);
+    }
     return {
       cart,
       deleteFromCart,
       deleteFromCartLocal,
       clearCart,
       clearCartLocal,
+      move,
+      qty
     };
   },
 };
